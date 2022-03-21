@@ -25,37 +25,56 @@ const CardWrapper = styled.div`
 
 
 
-function Card() {
+function Card({number}) {
 
  const [points, setPoints] = useState(5)
  const [loaded, setLoaded] = useState(false)
  const [station, getStation] = useState({})
+ const [stationClue, setStationClue] = useState()
 
 
  useEffect(()=>{
   const dataNum = Math.floor(Math.random() * 100)
   getStation(data[dataNum])
+  const stationArr = data[dataNum].station.split('')
+  stationArr.forEach((char, i, arr) => {
+    if(i !== 0 && i !== arr.length-1 && char !== " " && char !== "-" && char !== "'") {
+      arr[i] = "*"
+    }
+  })
+  setStationClue(stationArr.join(''))
   setLoaded(true)
-  }, []
+  }, [number]
   )
 
-  console.log(station)
+console.log(station)
 
   return (
     <>
     {loaded ? 
     <CardWrapper>
       <p>Points : {points}/5</p>
-      <Clue clueName="Trafic annuel" clueRevealed={station.trafic}></Clue>
-      <Clue clueName="Lignes" clueRevealed={[station.correspondance_1, station.correspondance_2, station.correspondance_3, station.correspondance_4, station.correspondance_5].join(" ")}></Clue>
-      <Clue clueName="Ville/Arrondissement"></Clue>
-      <Clue clueName="Quelques lettres"></Clue>
+      <Clue clueName="Trafic annuel" clueRevealed={station.trafic} setPoints={setPoints} points={points}/>
+      <Clue 
+      clueName="Ligne(s)" 
+      clueRevealed={[station.correspondance_1, station.correspondance_2, station.correspondance_3, station.correspondance_4, station.correspondance_5].join(" ")} 
+      setPoints={setPoints} 
+      points={points}/>
+      <Clue clueName="Ville/Arrondissement" 
+      clueRevealed={station.ville === "Paris" ? station.arrondissement_pour_paris + "e" : station.ville}
+      setPoints={setPoints} points={points} />
+      <Clue clueName="Quelques lettres" clueRevealed={stationClue}
+      setPoints={setPoints} points={points}/>
       <form>
         <label name="answer"> Réponse : </label>
         <input name="answer"></input>
         <input type="submit"></input>
       </form>
-      <Clue clueName="Voir la réponse"></Clue> 
+      <Clue 
+      clueName="Voir la réponse" 
+      clueRevealed={station.station} 
+      setPoints={setPoints} 
+      points={points}/>
     </CardWrapper> : "Chargement..."}
     </>
   )

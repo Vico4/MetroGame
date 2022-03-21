@@ -13,11 +13,14 @@ const StyledClue = styled.div `
 // remettre le state en hidden quand on envoie une réponse
 // afficher le next seulement quand on envoie une réponse
 
-function Clue({clueName, clueRevealed}) {
+function Clue({clueName, clueRevealed, setPoints, points}) {
 const [clueState, revealClue] = useState(false);
-
   return (
-    <StyledClue onClick={revealClue}>
+    <StyledClue onClick={()=> {
+      revealClue(true); 
+      clueName === "Voir la réponse" ? 
+      setPoints(0) : setPoints(points-1)}
+      }>
       {clueState ? clueRevealed : clueName}
     </StyledClue>
   )
