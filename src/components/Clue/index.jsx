@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import { useState } from 'react'
 
 
 const StyledClue = styled.div `
@@ -10,12 +10,15 @@ const StyledClue = styled.div `
   margin: 10px; 
   color: white;
 `
-// gérer le hidden / revealed avec un state 
+// remettre le state en hidden quand on envoie une réponse
+// afficher le next seulement quand on envoie une réponse
 
 function Clue({clueName, clueRevealed}) {
+const [clueState, revealClue] = useState(false);
+
   return (
-    <StyledClue>
-      {clueName}
+    <StyledClue onClick={revealClue}>
+      {clueState ? clueRevealed : clueName}
     </StyledClue>
   )
 }
