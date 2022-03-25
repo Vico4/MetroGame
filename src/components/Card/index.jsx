@@ -32,9 +32,14 @@ function Card({number}) {
  const [answer, setAnswer] = useState("")
  const [result, checkAnswer] = useState()
  const [totalPoints, calculatePoints] = useState(0)
+ const [previousCards, setPrevious] = useState([])
 
- useEffect(()=>{
-  const dataNum = Math.floor(Math.random() * 100)
+ useEffect(()=> {
+  let dataNum = Math.floor(Math.random() * 100)
+  while(previousCards.includes(dataNum)) {
+    dataNum = Math.floor(Math.random() * 100)
+  }
+
   getStation(data[dataNum])
   const stationArr = data[dataNum].station.split('')
   stationArr.forEach((char, i, arr) => {
@@ -42,6 +47,11 @@ function Card({number}) {
       arr[i] = "*"
     }
   })
+
+  let previous_tmp = [...previousCards]
+  previous_tmp.push(dataNum)
+  setPrevious(previous_tmp)
+  
   reveal([])
   setPoints(5)
   setStationClue(stationArr.join(''))
