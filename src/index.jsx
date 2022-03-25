@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Survey from './pages/Survey'
-import Results from './pages/Results'
 import Header from './components/Header'
 import Error from './components/Error'
 import { createGlobalStyle } from 'styled-components'
@@ -24,9 +23,6 @@ ReactDOM.render(
         </Route>
         <Route path="/survey/:questionNumber">
           <Survey />
-        </Route>
-        <Route path="/results">
-          <Results />
         </Route>
         <Route>
           <Error />
