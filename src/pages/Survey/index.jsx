@@ -19,7 +19,6 @@ function Survey() {
   return (
     <StyledDiv>
       <h1> Devinez la station, attention chaque indice révélé vous coute des points ! </h1>
-      <h2>Question {questionNumber}</h2>
       <Card number={questionNumberInt}></Card>
       {questionNumberInt > 10 ? null : (
         <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>

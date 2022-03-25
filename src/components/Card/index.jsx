@@ -35,12 +35,13 @@ function Card({number}) {
  const [previousCards, setPrevious] = useState([])
 
  useEffect(()=> {
-  let dataNum = Math.floor(Math.random() * 100)
+  let dataNum = Math.floor(Math.random() * 305)
   while(previousCards.includes(dataNum)) {
-    dataNum = Math.floor(Math.random() * 100)
+    dataNum = Math.floor(Math.random() * 305)
   }
 
   getStation(data[dataNum])
+
   const stationArr = data[dataNum].station.split('')
   stationArr.forEach((char, i, arr) => {
     if(i !== 0 && i !== arr.length-1 && char !== " " && char !== "-" && char !== "'") {
@@ -51,16 +52,18 @@ function Card({number}) {
   let previous_tmp = [...previousCards]
   previous_tmp.push(dataNum)
   setPrevious(previous_tmp)
-  
+
   reveal([])
   setPoints(5)
   setStationClue(stationArr.join(''))
   setAnswer('')
   checkAnswer('')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [number]
   )
 
 console.log(station)
+console.log(data.length)
 
 function clueClick(clueName, id) {
   if(clueState[id] !== "show") {
@@ -95,6 +98,7 @@ function handleSubmit(e) {
     <>
     {number < 11 ? 
     <CardWrapper>
+      <p><b>Question {number}</b></p>
       <p>Points : {points}/5</p>
       <Clue 
         id = {0}
