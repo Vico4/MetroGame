@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { useState } from 'react'
+// import { useState } from 'react'
 
 
 const StyledClue = styled.div `
@@ -12,19 +12,17 @@ const StyledClue = styled.div `
 `
 // remettre le state en hidden quand on envoie une réponse
 // afficher le next seulement quand on envoie une réponse
+// faire en sorte de pas avoir deux fois la même carte 
 
-function Clue({clueName, clueRevealed, setPoints, points}) {
-const [clueState, revealClue] = useState(false);
-  return (
+function Clue({id, clueName, clueRevealed, clueClick, clueState}) {
+ 
+return (
     <StyledClue onClick={()=> {
-      revealClue(true); 
-      clueName === "Voir la réponse" ? 
-      setPoints(0) : setPoints(points-1)}
+      clueClick(clueName, id)}
       }>
-      {clueState ? clueRevealed : clueName}
+      {clueState[id] === "show" ? clueRevealed : clueName}
     </StyledClue>
   )
 }
-
 
 export default Clue

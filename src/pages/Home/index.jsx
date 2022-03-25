@@ -37,8 +37,8 @@ const StyleH = styled.h1 `
 function Home() {
   return (
     <StyledDiv>
-      <StyleH>Connaissez-vous bien le réseau RATP ?</StyleH>
-      <p> Essayez de deviner la station de métro en utilisant le moins d'indices possibles </p>
+      <StyleH>Connaissez-vous bien le métro parisien ?</StyleH>
+      <p> Essayez de deviner la station en utilisant le moins d'indices possibles </p>
       <StyledLink to="/survey/1" $isFullLink>
         Jouer
       </StyledLink>

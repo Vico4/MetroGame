@@ -1,8 +1,15 @@
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Card from '../../components/Card/index'
+import styled from 'styled-components'
 
-// est-ce que je fetch les 10 cartes d'un coup ou une par une ?
+const StyledDiv = styled.div `
+  display: flex;
+  justify-content: center;
+  align-items : center;
+  flex-direction : column;
+  flex-wrap : wrap,
+  `
 
 function Survey() {
   const { questionNumber } = useParams()
@@ -10,17 +17,14 @@ function Survey() {
   const nextQuestionNumber = questionNumberInt + 1
 
   return (
-    <div>
+    <StyledDiv>
       <h1> Devinez la station, attention chaque indice révélé vous coute des points ! </h1>
       <h2>Question {questionNumber}</h2>
       <Card number={questionNumberInt}></Card>
-      <p>Total des points : </p>
-      {questionNumberInt === 10 ? (
-        <Link to="/results">Résultats</Link>
-      ) : (
+      {questionNumberInt > 10 ? null : (
         <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
       )}
-    </div>
+    </StyledDiv>
   )
 }
 
