@@ -81,7 +81,7 @@ function handleChange(e) {
 
 function handleSubmit(e) {
   console.log("handling input" + answer)
-  const ans = answer.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  const ans = answer.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim()
   if(ans.toUpperCase() === station.station) {
     checkAnswer("Bonne réponse !")
     calculatePoints(totalPoints + points)
