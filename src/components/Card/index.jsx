@@ -25,7 +25,7 @@ const CardWrapper = styled.div`
 
 function Card({number}) {
 
- const [points, setPoints] = useState(5)
+ const [points, setPoints] = useState(10)
  const [station, getStation] = useState({})
  const [stationClue, setStationClue] = useState()
  const [clueState, reveal] = useState([])
@@ -53,8 +53,8 @@ function Card({number}) {
   previous_tmp.push(dataNum)
   setPrevious(previous_tmp)
 
-  reveal([])
-  setPoints(5)
+  reveal(["","","","show",""])
+  setPoints(10)
   setStationClue(stationArr.join(''))
   setAnswer('')
   checkAnswer('')
@@ -66,9 +66,10 @@ console.log(station)
 console.log(data.length)
 
 function clueClick(clueName, id) {
+  const pointCost = [1, 2, 4]
   if(clueState[id] !== "show") {
   clueName === "Voir la réponse" ? 
-      setPoints(0) : setPoints(points-1);
+      setPoints(0) : setPoints(points - pointCost[id]);
   const revealed = [...clueState]
   revealed[id] = "show"
   reveal(revealed); 
@@ -99,17 +100,25 @@ function handleSubmit(e) {
     {number < 11 ? 
     <CardWrapper>
       <p><b>Question {number}</b></p>
-      <p>Points : {points}/5</p>
+      <p>Points : {points}/10</p>
+      <Clue 
+        id = {3}
+        clueName="Quelques lettres" 
+        clueRevealed={stationClue}
+        setPoints={setPoints} 
+        clueClick = {clueClick}
+        points= {points}
+        clueState = {clueState}/>
       <Clue 
         id = {0}
-        clueName="Trafic annuel" 
+        clueName="Trafic annuel (1 pts)" 
         clueRevealed={station.trafic} 
         clueClick = {clueClick}
         points= {points}
         clueState = {clueState}/>
       <Clue 
         id = {1}
-        clueName="Ligne(s)" 
+        clueName="Ligne(s) (2 pts)" 
         clueRevealed={[station.correspondance_1, 
         station.correspondance_2, 
         station.correspondance_3, 
@@ -121,21 +130,13 @@ function handleSubmit(e) {
         />
       <Clue 
         id = {2}
-        clueName="Ville/Arrondissement" 
+        clueName="Ville/Arrondissement (4 pts)" 
         clueRevealed={station.ville === "Paris" ? 
           station.arrondissement_pour_paris + "e" : 
           station.ville}
           clueClick = {clueClick}
           points= {points}
           clueState = {clueState}/>
-      <Clue 
-        id = {3}
-        clueName="Quelques lettres" 
-        clueRevealed={stationClue}
-        setPoints={setPoints} 
-        clueClick = {clueClick}
-        points= {points}
-        clueState = {clueState}/>
       {clueState[4] || points === 0 ? null : 
       <form onSubmit={handleSubmit}>
         <label name="answer"> Réponse : 
