@@ -5,8 +5,7 @@ import colors from '../../utils/style/colors'
 const StyledDiv = styled.div `
   display : flex;
   flex-direction : column;
-  flex-wrap : wrap,
-  justify-content : space-around;
+  flex-wrap : wrap;
   align-items : center;
   margin-top : 5vh;
   margin-left: 5vw;
@@ -30,15 +29,22 @@ const StyledLink = styled(Link)`
 const StyleH = styled.h1 `
   font-weight: 700;
   font-size: 3rem;
-  line-height: 160.5%;
   color: #2F2E41;
+`
+
+const StyledP = styled.p `
+    font-size: 1.5rem;
+`
+
+const StyleFooter = styled.p `
+    font-size: 0.5rem;
 `
 
 function Home() {
   return (
     <StyledDiv>
       <StyleH>Connaissez-vous bien le métro parisien ?</StyleH>
-      <p> Essayez de deviner la station en utilisant le moins d'indices possibles </p>
+      <StyledP> Essayez de deviner la station en utilisant le moins d'indices possibles </StyledP>
       <StyledLink to="/survey/1" $isFullLink>
         Jouer
       </StyledLink>
