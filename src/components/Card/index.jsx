@@ -17,11 +17,17 @@ const CardWrapper = styled.div`
   width: 350px;
 `
 
-/* const StyledP = styled.p `
-` */
 
-// gérer les points avec un state et un onclick 
-// gérer le résultat avec un onSubmit 
+const StyledInput = styled.input `
+  height: 25px;
+  font-size: 100%;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-right : 5px;
+  padding-left: 10px;
+
+`
+
 
 function Card({number}) {
 
@@ -139,10 +145,8 @@ function handleSubmit(e) {
           clueState = {clueState}/>
       {clueState[4] || points === 0 ? null : 
       <form onSubmit={handleSubmit}>
-        <label name="answer"> Réponse : 
-          <input type="text" name="answer" value={answer} onChange={handleChange}></input>
-        </label>
-        <input type="submit"></input>
+        <StyledInput type="text" name="answer" value={answer} placeholder="Réponse" onChange={handleChange}/>
+        <StyledInput type="submit"></StyledInput>
       </form> }
       <p>{result}</p>
       <Clue 

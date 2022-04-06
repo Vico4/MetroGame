@@ -2,14 +2,18 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Card from '../../components/Card/index'
 import styled from 'styled-components'
+import colors from '../../utils/style/colors'
+
 
 const StyledDiv = styled.div `
   display: flex;
-  justify-content: center;
   align-items : center;
   flex-direction : column;
-  flex-wrap : wrap,
   `
+const StyledNext = styled(Link) `
+  margin: 5px;
+  color: ${colors.primary}
+`
 
 function Survey() {
   const { questionNumber } = useParams()
@@ -21,7 +25,7 @@ function Survey() {
       <h1> Devinez la station, attention chaque indice révélé vous coute des points ! </h1>
       <Card number={questionNumberInt}></Card>
       {questionNumberInt > 10 ? null : (
-        <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
+        <StyledNext to={`/survey/${nextQuestionNumber}`}>Suivant</StyledNext>
       )}
     </StyledDiv>
   )

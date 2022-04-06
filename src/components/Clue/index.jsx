@@ -9,17 +9,19 @@ const StyledClue = styled.div `
   padding: 15px;
   margin: 10px; 
   color: white;
+  ${(props) => props.$answer && `background-color : grey;
+  padding : 5px`} 
 `
-// remettre le state en hidden quand on envoie une réponse
-// afficher le next seulement quand on envoie une réponse
-// faire en sorte de pas avoir deux fois la même carte 
+
 
 function Clue({id, clueName, clueRevealed, clueClick, clueState}) {
  
 return (
     <StyledClue onClick={()=> {
       clueClick(clueName, id)}
-      }>
+      }
+      $answer = {id === 4 ? true : false}
+      >
       {clueState[id] === "show" ? clueRevealed : clueName}
     </StyledClue>
   )

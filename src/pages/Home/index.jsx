@@ -5,12 +5,10 @@ import colors from '../../utils/style/colors'
 const StyledDiv = styled.div `
   display : flex;
   flex-direction : column;
-  flex-wrap : wrap;
   align-items : center;
   margin-top : 5vh;
   margin-left: 5vw;
   margin-right: 5vw;
-  padding: 5vw;
   border-radius: 50px; 
   background-color: ${colors.backgroundLight}
 `
@@ -19,6 +17,7 @@ const StyledLink = styled(Link)`
   padding: 15px;
   padding-left : 25px;
   padding-right : 25px;
+  margin: 15px;
   color: #8186a0;
   text-decoration: none;
   font-size: 34px;
@@ -36,8 +35,8 @@ const StyledP = styled.p `
     font-size: 1.5rem;
 `
 
-const StyleFooter = styled.p `
-    font-size: 0.5rem;
+const StyledFooter = styled.p `
+    font-size: 0.8rem;
 `
 
 function Home() {
@@ -48,6 +47,7 @@ function Home() {
       <StyledLink to="/survey/1" $isFullLink>
         Jouer
       </StyledLink>
+      <StyledFooter> Je m'appelle Vic et j'apprends à coder, voilà mon <a href="https://tourmaline-wormhole-b64.notion.site/Victoire-Stahl-59406772ff9547d1b1e8b35214f3745a">portfolio</a> </StyledFooter>
     </StyledDiv>
   )
 }
