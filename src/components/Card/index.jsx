@@ -78,12 +78,11 @@ console.log(data.length)
 
 function clueClick(clueName, id) {
   const pointCost = [1, 2, 4]
-  if(clueState[id] !== "show") {
-  clueName === "Voir la réponse" && points <= pointCost ? 
-      setPoints(0) : setPoints(points - pointCost[id]);
-  const revealed = [...clueState]
-  revealed[id] = "show"
-  reveal(revealed); 
+  if(clueState[id] !== "show" && points >= pointCost)  {
+    clueName === "Voir la réponse" ? setPoints(0) : setPoints(points - pointCost[id]);
+    const revealed = [...clueState]
+    revealed[id] = "show"
+    reveal(revealed); 
   }
 }
 
