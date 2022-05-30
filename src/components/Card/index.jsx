@@ -46,9 +46,9 @@ function Card({number}) {
     dataNum = Math.floor(Math.random() * 305)
   }
 
-  getStation(data[dataNum])
+  getStation(data[dataNum].fields)
 
-  const stationArr = data[dataNum].station.split('')
+  const stationArr = data[dataNum].fields.station.split('')
   stationArr.forEach((char, i, arr) => {
     if(i !== 0 && i !== arr.length-1 && char !== " " && char !== "-" && char !== "'") {
       arr[i] = "*"
