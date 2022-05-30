@@ -42,10 +42,10 @@ function Card({number}) {
 
  useEffect(()=> {
 
-  if(number === "1") {
+  if(number === 1) {
     calculatePoints(0)
   }
-  
+
   let dataNum = Math.floor(Math.random() * 305)
   while(previousCards.includes(dataNum)) {
     dataNum = Math.floor(Math.random() * 305)
@@ -79,7 +79,7 @@ console.log(data.length)
 function clueClick(clueName, id) {
   const pointCost = [1, 2, 4]
   if(clueState[id] !== "show") {
-  clueName === "Voir la réponse" ? 
+  clueName === "Voir la réponse" && points <= pointCost ? 
       setPoints(0) : setPoints(points - pointCost[id]);
   const revealed = [...clueState]
   revealed[id] = "show"
