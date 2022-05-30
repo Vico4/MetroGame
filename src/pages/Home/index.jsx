@@ -48,7 +48,7 @@ function Home() {
         Jouer
       </StyledLink>
       <StyledFooter> Je m'appelle Vic et j'apprends à coder, voilà mon <a href="https://tourmaline-wormhole-b64.notion.site/Victoire-Stahl-59406772ff9547d1b1e8b35214f3745a">portfolio</a> </StyledFooter>
-      <StyledFooter> Ce jeu utilise un jeu de données <a href='https://data.ratp.fr/explore/dataset/trafic-annuel-entrant-par-station-du-reseau-ferre-2020/information/'> open data RATP </a></StyledFooter>
+      <StyledFooter> Ce jeu utilise un jeu de données <a href='https://data.ratp.fr/explore/dataset/trafic-annuel-entrant-par-station-du-reseau-ferre-2021/information/'> open data RATP </a></StyledFooter>
     </StyledDiv>
   )
 }

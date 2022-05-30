@@ -41,6 +41,11 @@ function Card({number}) {
  const [previousCards, setPrevious] = useState([])
 
  useEffect(()=> {
+
+  if(number === "1") {
+    calculatePoints(0)
+  }
+  
   let dataNum = Math.floor(Math.random() * 305)
   while(previousCards.includes(dataNum)) {
     dataNum = Math.floor(Math.random() * 305)
