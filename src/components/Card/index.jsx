@@ -81,6 +81,9 @@ function clueClick(clueName, id) {
   if(clueState[id] !== "show") {
     if (clueName === "Voir la réponse") {
       setPoints(0)
+      const revealed = [...clueState]
+      revealed[id] = "show"
+      reveal(revealed);
     } 
     else if (points >= pointCost[id]) {
       setPoints(points - pointCost[id]);
